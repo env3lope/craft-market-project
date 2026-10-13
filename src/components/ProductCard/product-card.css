@@ -21,3 +21,8 @@
 .product-card__badge--out {
     color: #b00020
 }
+
+.product-card__badge--sale {
+    background-color: rgb(200, 0, 0);
+    font-weight: bold;
+}

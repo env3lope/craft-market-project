@@ -23,6 +23,11 @@ function ProductCard({ name, price, image, category, inStock = true }) {
       {!inStock && (
         <span className="product-card__badge product-card__badge--out">Немає в наявності</span>
       )}
+      {inStock && category === 'Кераміка' ? (
+        <span className="product-card__badge product-card__badge--sale">Розпродаж</span>
+      ) : (
+        ''
+      )}
     </article>
   )
 }
