@@ -25,4 +25,5 @@
 .product-card__badge--sale {
     background-color: rgb(200, 0, 0);
     font-weight: bold;
+    color: white;
 }

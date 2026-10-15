@@ -15,7 +15,7 @@ const PLACEHOLDER_IMAGE = '/src/assets/product-placeholder.png'
 function ProductCard({ name, price, image, category, inStock = true }) {
   const imageSrc = image || PLACEHOLDER_IMAGE
   return (
-    <article classname="product-card">
+    <article className="product-card">
       <img className="product-card__image" src={imageSrc} alt={name} />
       <h3>{name}</h3>
       <p className="product-card__price">{price} грн</p>
