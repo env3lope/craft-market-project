@@ -1,6 +1,5 @@
 .search-panel {
   display: flex;
-  flex-direction: column;
   gap: 4px;
   margin-bottom: 16px;
 }
@@ -11,6 +10,7 @@
 }
 
 .search-panel__input {
+  width: 25%;
   padding: 8px 12px;
   border: 1px solid #d0d0d0;
   border-radius: 6px;

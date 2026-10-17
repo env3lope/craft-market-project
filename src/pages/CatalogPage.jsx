@@ -1,36 +1,42 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import SearchPanel from '../components/SearchPanel/SearchPanel'
 import { mockProducts } from '../data/mock-products.js'
-import ProductCard from '../components/ProductCard/ProductCard.jsx'
-import './catalog-page.css'
+import ProductList from '../components/ProductList/ProductList.jsx'
+import { sortByName, sortByPrice } from '../utils/sortMethods.js'
+import './CatalogPage.css'
 
 function CatalogPage() {
-  const [searchQuery, setSearchQuery] = useState(() => localStorage.getItem('searchQuery') || '')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [sortMethod, setSortMethod] = useState('')
 
-  searchQuery
-    ? localStorage.setItem('searchQuery', searchQuery)
-    : localStorage.removeItem('searchQuery')
-
-  const filteredProducts = mockProducts.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredProducts = useMemo(
+    () =>
+      mockProducts.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      ),
+    [searchQuery]
   )
 
+  let sortedProducts = [...filteredProducts]
+
+  switch (sortMethod) {
+    case '':
+      break
+    case 'sort-name-asc':
+    case 'sort-name-desc':
+      sortByName(sortedProducts, sortMethod)
+      break
+    case 'sort-price-asc':
+    case 'sort-price-desc':
+      sortByPrice(sortedProducts, sortMethod)
+      break
+  }
+
   return (
-    <div className="catalog-page">
-      <SearchPanel value={searchQuery} onChange={setSearchQuery}></SearchPanel>
-      <p className="catalog-page__results-count">Знайдено товарів: {filteredProducts.length}</p>
-      {filteredProducts.length === 0 ? (
-        <p className="catalog-page__empty-message">
-          За запитом «{searchQuery}» нічого не знайдено. Спробуйте інше формулювання.
-        </p>
-      ) : (
-        <div className="catalog-page__grid">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} {...product}></ProductCard>
-          ))}
-        </div>
-      )}
-    </div>
+    <section>
+      <SearchPanel value={searchQuery} onChange={setSearchQuery} onSortChange={setSortMethod} />
+      <ProductList products={sortedProducts} />
+    </section>
   )
 }
 
