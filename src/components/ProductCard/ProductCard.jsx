@@ -10,13 +10,21 @@ import './ProductCard.css'
  * @param {boolean} [props.inStock=true]
  */
 
-const PLACEHOLDER_IMAGE = '/src/assets/product-placeholder.png'
+const PLACEHOLDER_IMAGE = '/public/assets/product-placeholder.png'
 
 function ProductCard({ name, price, image, category, inStock = true }) {
   const imageSrc = image || PLACEHOLDER_IMAGE
   return (
     <article className="product-card">
-      <img className="product-card__image" src={imageSrc} alt={name} />
+      <img
+        className="product-card__image"
+        src={imageSrc}
+        onError={(e) => {
+          e.currentTarget.onerror = null
+          e.currentTarget.src = PLACEHOLDER_IMAGE
+        }}
+        alt={name}
+      />
       <h3>{name}</h3>
       <p className="product-card__price">{price} грн</p>
       <p className="product-card__category">{category}</p>

@@ -1,0 +1,13 @@
+.loading-state {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+  color: oklch(55.4% 0.046 257.417)
+}
+
+.error-state {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  text-align: center;
+  color: red;
+}
