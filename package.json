@@ -12,9 +12,14 @@
     "check:structure": "node ./scripts/check-structure.js"
   },
   "dependencies": {
+    "@hookform/resolvers": "^6.0.0",
+    "@tailwindcss/vite": "^4.3.3",
     "prop-types": "^15.8.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-hook-form": "^7.91.0",
+    "tailwindcss": "^4.3.3",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

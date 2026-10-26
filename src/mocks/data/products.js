@@ -3,7 +3,7 @@ export const products = [
     id: "p-001",
     name: "Гончарна ваза «Лаванда»",
     price: 450,
-
+    image: "/assets/vase-lavender.jpg",
     category: "Кераміка",
     inStock: true
   },

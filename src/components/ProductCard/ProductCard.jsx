@@ -10,7 +10,7 @@ import './ProductCard.css'
  * @param {boolean} [props.inStock=true]
  */
 
-const PLACEHOLDER_IMAGE = '/public/assets/product-placeholder.png'
+const PLACEHOLDER_IMAGE = '/assets/product-placeholder.png'
 
 function ProductCard({ name, price, image, category, inStock = true }) {
   const imageSrc = image || PLACEHOLDER_IMAGE
