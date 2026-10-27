@@ -3,22 +3,22 @@ import ProductList from '../components/ProductList/ProductList.jsx'
 import SearchPanel from '../components/SearchPanel/SearchPanel'
 import { sortByName, sortByPrice } from '../utils/sortMethods.js'
 import './CatalogPage.css'
-import ReviewForm from '../components/ReviewForm/ReviewForm.jsx'
-import ReviewList from '../components/ReviewList/ReviewList.jsx'
-import { mockReviews } from '../data/mock-reviews.js'
+// import ReviewForm from '../components/ReviewForm/ReviewForm.jsx'
+// import ReviewList from '../components/ReviewList/ReviewList.jsx'
+// import { mockReviews } from '../data/mock-reviews.js'
 
-export function CatalogPage() {
+export function CatalogPage({ onAddToCart }) {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortMethod, setSortMethod] = useState('')
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [reviews, setReviews] = useState(mockReviews)
+  // const [reviews, setReviews] = useState([])
   const [reviewSearchQuery, setReviewSearchQuery] = useState('')
 
-  const handleReviewSubmit = (review) => {
-    setReviews((prev) => [...prev, review])
-  }
+  // const handleReviewSubmit = (review) => {
+  //   setReviews((prev) => [...prev, review])
+  // }
 
   useEffect(() => {
     let isActive = true
@@ -67,7 +67,7 @@ export function CatalogPage() {
   }
 
   const filteredProducts = products.filter((product) =>
-    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
   let sortedProducts = [...filteredProducts]
@@ -85,10 +85,6 @@ export function CatalogPage() {
       break
   }
 
-  const filteredReviews = reviews.filter((review) =>
-    review.reviewText.toLowerCase().includes(reviewSearchQuery.trim().toLowerCase())
-  )
-
   return (
     <section>
       <SearchPanel
@@ -98,9 +94,8 @@ export function CatalogPage() {
         onSortChange={setSortMethod}
         onReviewSearchChange={setReviewSearchQuery}
       />
-      <ProductList products={sortedProducts} />
-      <ReviewForm onReviewSubmit={handleReviewSubmit} />
-      <ReviewList reviews={filteredReviews} />
+      <ProductList products={sortedProducts} onAddToCart={onAddToCart} />
+      {/* <ReviewForm onReviewSubmit={handleReviewSubmit} /> */}
     </section>
   )
 }

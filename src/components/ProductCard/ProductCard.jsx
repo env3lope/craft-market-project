@@ -3,7 +3,7 @@ import './ProductCard.css'
 
 /**
  * @param {Object} props
- * @param {string} props.name
+ * @param {string} props.title
  * @param {number} props.price
  * @param {string} [props.image]
  * @param {string} props.category
@@ -12,7 +12,7 @@ import './ProductCard.css'
 
 const PLACEHOLDER_IMAGE = '/assets/product-placeholder.png'
 
-function ProductCard({ name, price, image, category, inStock = true }) {
+function ProductCard({ title, price, image, category, inStock = true, onAddToCart }) {
   const imageSrc = image || PLACEHOLDER_IMAGE
   return (
     <article className="product-card">
@@ -23,9 +23,9 @@ function ProductCard({ name, price, image, category, inStock = true }) {
           e.currentTarget.onerror = null
           e.currentTarget.src = PLACEHOLDER_IMAGE
         }}
-        alt={name}
+        alt={title}
       />
-      <h3>{name}</h3>
+      <h3>{title}</h3>
       <p className="product-card__price">{price} грн</p>
       <p className="product-card__category">{category}</p>
       {!inStock && (
@@ -36,6 +36,9 @@ function ProductCard({ name, price, image, category, inStock = true }) {
       ) : (
         ''
       )}
+      <button type="button" className="product-card__add" disabled={!inStock} onClick={onAddToCart}>
+        {inStock ? 'До кошика' : 'Немає в наявності'}
+      </button>
     </article>
   )
 }
@@ -46,6 +49,7 @@ ProductCard.propTypes = {
   image: PropTypes.string,
   category: PropTypes.string.isRequired,
   inStock: PropTypes.bool,
+  onAddToCart: PropTypes.func.isRequired,
 }
 
 export default ProductCard

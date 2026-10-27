@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import ProductCard from '../ProductCard/ProductCard'
 import styles from './ProductList.module.css'
 
-function ProductList({ products }) {
+function ProductList({ products, onAddToCart }) {
   if (products.length === 0) {
     return <p className={styles.emptyMessage}>За заданими умовами пошуку товарів не знайдено.</p>
   }
@@ -17,6 +17,7 @@ function ProductList({ products }) {
           image={product.image}
           category={product.category}
           inStock={product.inStock}
+          onAddToCart={() => onAddToCart(product)}
         />
       ))}
     </div>

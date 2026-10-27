@@ -1,7 +1,7 @@
 export const products = [
   {
     id: "p-001",
-    name: "Гончарна ваза «Лаванда»",
+    title: "Гончарна ваза «Лаванда»",
     price: 450,
     image: "/assets/vase-lavender.jpg",
     category: "Кераміка",
@@ -9,7 +9,7 @@ export const products = [
   },
   {
     id: "p-002",
-    name: "В'язаний плед «Осінь»",
+    title: "В'язаний плед «Осінь»",
     price: 1200,
     image: "/assets/blanket-autumn.jpg",
     category: "Текстиль",
@@ -17,7 +17,7 @@ export const products = [
   },
   {
     id: "p-003",
-    name: "Дерев'яна шкатулка",
+    title: "Дерев'яна шкатулка",
     price: 680,
     image: "/assets/box-wood.jpg",
     category: "Дерево",
@@ -25,14 +25,14 @@ export const products = [
   },
   {
     id: "p-004",
-    name: "Керамічна тарілка з розписом",
+    title: "Керамічна тарілка з розписом",
     price: 320, image: "/assets/plate-painted.jpg",
     category: "Кераміка",
     inStock: true
   },
   {
     id: "p-005",
-    name: "Свічка соєва «Лаванда і м'ята»",
+    title: "Свічка соєва «Лаванда і м'ята»",
     price: 180,
     image: "/assets/candle-lavender.jpg",
     category: "Свічки",
