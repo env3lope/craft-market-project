@@ -2,3 +2,8 @@
   display: flex;
   gap: 8px
 }
+
+.cart-item__image {
+  width: 128px;
+  height: 128px;
+}

@@ -4,10 +4,10 @@ export function sortByName(products, method) {
   }
 
   if (method === "sort-name-asc") {
-    return products.sort((a, b) => a.name.localeCompare(b.name))
+    return products.sort((a, b) => a.title.localeCompare(b.title))
   }
 
-  return products.sort((a, b) => b.name.localeCompare(a.name))
+  return products.sort((a, b) => b.title.localeCompare(a.title))
 }
 
 export function sortByPrice(products, method) {

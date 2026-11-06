@@ -1,29 +1,20 @@
 import CatalogPage from './pages/CatalogPage'
-import { useCart } from './hooks/useCart.js'
-import CartPage from './components/CartPage/CartPage.jsx'
-import PromocodeForm from './components/PromocodeForm/PromocodeForm.jsx'
-import './App.css'
+import Header from './components/Header/Header'
+import CartPage from './components/CartPage/CartPage'
+import { useState } from 'react'
 
-function App() {
-  const cart = useCart()
+const container = 'mx-auto max-w-6x1 px-4'
+
+export default function App() {
+  const [page, setPage] = useState('catalog')
 
   return (
-    <div className="app">
-      <header className="app__header">
-        <p className="app__logo">CraftMarket</p>
-        <p className="app__cart-counter" aria-live="polite">
-          У кошику: {cart.totalCount}
-        </p>
-      </header>
-      <main className="app__layout">
-        <aside className="app__cart" aria-label="Кошик покупок">
-          <CartPage cart={cart} />
-          <PromocodeForm applyPromo={cart.applyPromo} />
-        </aside>
-        <CatalogPage onAddToCart={cart.addItem} />
+    <div className="min-h-screen">
+      <Header onNavigate={setPage} />
+
+      <main className={`${container} py-8`}>
+        {page === 'catalog' ? <CatalogPage /> : <CartPage />}
       </main>
     </div>
   )
 }
-
-export default App

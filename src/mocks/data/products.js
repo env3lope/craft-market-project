@@ -5,7 +5,9 @@ export const products = [
     price: 450,
     image: "/assets/vase-lavender.jpg",
     category: "Кераміка",
-    inStock: true
+    inStock: true,
+    isNew: false,
+    oldPrice: null
   },
   {
     id: "p-002",
@@ -13,7 +15,9 @@ export const products = [
     price: 1200,
     image: "/assets/blanket-autumn.jpg",
     category: "Текстиль",
-    inStock: true
+    inStock: true,
+    oldPrice: 1500,
+    isNew: false,
   },
   {
     id: "p-003",
@@ -21,14 +25,15 @@ export const products = [
     price: 680,
     image: "/assets/box-wood.jpg",
     category: "Дерево",
-    inStock: false
+    inStock: false,
   },
   {
     id: "p-004",
     title: "Керамічна тарілка з розписом",
     price: 320, image: "/assets/plate-painted.jpg",
     category: "Кераміка",
-    inStock: true
+    inStock: true,
+    isNew: true,
   },
   {
     id: "p-005",

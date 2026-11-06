@@ -1,24 +1,27 @@
 import PropTypes from 'prop-types'
 import ProductCard from '../ProductCard/ProductCard'
-import styles from './ProductList.module.css'
 
-function ProductList({ products, onAddToCart }) {
+const gridClasses = 'mt-6 grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-6'
+
+const emptyClasses = [
+  'mt-8 rounded-card border border-dashed border-line',
+  'bg-white px-6 py-12 text-center',
+].join(' ')
+
+function ProductList({ products }) {
   if (products.length === 0) {
-    return <p className={styles.emptyMessage}>За заданими умовами пошуку товарів не знайдено.</p>
+    return (
+      <div className={emptyClasses}>
+        <p className="font-display text-x1 font-semibold text-ink">Нічого не знайдено</p>
+        <p className="mt-2 text-sm text-ink-muted">Змініть запит або очистіть поле пошуку.</p>
+      </div>
+    )
   }
 
   return (
-    <div className={styles.grid}>
+    <div className={gridClasses}>
       {products.map((product) => (
-        <ProductCard
-          key={product.id}
-          name={product.name}
-          price={product.price}
-          image={product.image}
-          category={product.category}
-          inStock={product.inStock}
-          onAddToCart={() => onAddToCart(product)}
-        />
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   )

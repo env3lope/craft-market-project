@@ -3,22 +3,18 @@ import ProductList from '../components/ProductList/ProductList.jsx'
 import SearchPanel from '../components/SearchPanel/SearchPanel'
 import { sortByName, sortByPrice } from '../utils/sortMethods.js'
 import './CatalogPage.css'
-// import ReviewForm from '../components/ReviewForm/ReviewForm.jsx'
-// import ReviewList from '../components/ReviewList/ReviewList.jsx'
-// import { mockReviews } from '../data/mock-reviews.js'
 
-export function CatalogPage({ onAddToCart }) {
+const errorClasses = [
+  'mt-8 rounded-card border border-clay-600',
+  'bg-clay-50 px-4 py-3 text-clay-700',
+].join(' ')
+
+export function CatalogPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [sortMethod, setSortMethod] = useState('')
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
-  // const [reviews, setReviews] = useState([])
-  const [reviewSearchQuery, setReviewSearchQuery] = useState('')
-
-  // const handleReviewSubmit = (review) => {
-  //   setReviews((prev) => [...prev, review])
-  // }
 
   useEffect(() => {
     let isActive = true
@@ -55,12 +51,16 @@ export function CatalogPage({ onAddToCart }) {
   }, [])
 
   if (isLoading) {
-    return <p className="loading-state">Завантаження каталогу...</p>
+    return (
+      <p rolde="status" className="mt-8 text-ink-muted">
+        Завантаження каталогу...
+      </p>
+    )
   }
 
   if (error) {
     return (
-      <p className="error-state" role="alert">
+      <p className={errorClasses} role="alert">
         Не вдалося завантажити каталог: {error}
       </p>
     )
@@ -89,13 +89,12 @@ export function CatalogPage({ onAddToCart }) {
     <section>
       <SearchPanel
         searchQueryValue={searchQuery}
-        reviewSearchQueryValue={reviewSearchQuery}
         onSearchChange={setSearchQuery}
         onSortChange={setSortMethod}
-        onReviewSearchChange={setReviewSearchQuery}
+        total={sortedProducts.length}
       />
-      <ProductList products={sortedProducts} onAddToCart={onAddToCart} />
-      {/* <ReviewForm onReviewSubmit={handleReviewSubmit} /> */}
+      <h1 className="font-display text-3xl font-bold text-ink">Каталог товарів</h1>
+      <ProductList products={sortedProducts} />
     </section>
   )
 }
