@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import ProductCard from '../ProductCard/ProductCard'
 
-const gridClasses = 'mt-6 grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-6'
+// const gridClasses = 'mt-6 grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-6'
 
 const emptyClasses = [
   'mt-8 rounded-card border border-dashed border-line',
@@ -19,7 +19,7 @@ function ProductList({ products }) {
   }
 
   return (
-    <div className={gridClasses}>
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4 lg:gap-5">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

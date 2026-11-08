@@ -14,7 +14,7 @@ const inputClasses = [
 
 function SearchPanel({ searchQueryValue, onSearchChange, onSortChange, total }) {
   return (
-    <form rold="search" className={panelClasses} onSubmit={(event) => event.preventDefault()}>
+    <form role="search" className={panelClasses} onSubmit={(event) => event.preventDefault()}>
       <div className="flex-1">
         <label htmlFor="catalog-search" className="sr-only">
           Пошук за назвою товару
@@ -32,7 +32,7 @@ function SearchPanel({ searchQueryValue, onSearchChange, onSortChange, total }) 
         Знайдено: <span className="font-semibold text-ink">{total}</span>
       </p>
       <select
-        className="text-ink text-md font-semibold"
+        className="h-11 rounded-lg border border-edge bg-white px-3 text-ink"
         defaultValue=""
         onChange={(event) => onSortChange(event.target.value)}
       >

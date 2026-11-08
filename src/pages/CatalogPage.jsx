@@ -3,6 +3,9 @@ import ProductList from '../components/ProductList/ProductList.jsx'
 import SearchPanel from '../components/SearchPanel/SearchPanel'
 import { sortByName, sortByPrice } from '../utils/sortMethods.js'
 import './CatalogPage.css'
+import PageContainer from '../layout/PageContainer.jsx'
+
+import ReviewForm from '../components/ReviewForm/ReviewForm.jsx'
 
 const errorClasses = [
   'mt-8 rounded-card border border-clay-600',
@@ -15,6 +18,7 @@ export function CatalogPage() {
   const [products, setProducts] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [reviewSearchQuery, setReviewSearchQuery] = useState('')
 
   useEffect(() => {
     let isActive = true
@@ -86,16 +90,21 @@ export function CatalogPage() {
   }
 
   return (
-    <section>
-      <SearchPanel
-        searchQueryValue={searchQuery}
-        onSearchChange={setSearchQuery}
-        onSortChange={setSortMethod}
-        total={sortedProducts.length}
-      />
-      <h1 className="font-display text-3xl font-bold text-ink">Каталог товарів</h1>
-      <ProductList products={sortedProducts} />
-    </section>
+    <PageContainer>
+      <div className="flex flex-col gap-5 py-6 md:gap-6 md:py-10">
+        <h1 className="text-2xl font-bold text-ink md:text-3xl">Каталог</h1>
+        <SearchPanel
+          searchQueryValue={searchQuery}
+          reviewSearchQueryValue={reviewSearchQuery}
+          onReviewSearchChange={setReviewSearchQuery}
+          onSearchChange={setSearchQuery}
+          onSortChange={setSortMethod}
+          total={sortedProducts.length}
+        />
+        <ProductList products={sortedProducts} />
+        <ReviewForm />
+      </div>
+    </PageContainer>
   )
 }
 

@@ -1,5 +1,5 @@
-import './ProductCard.css'
 import AddToCartButton from '../AddToCartButton/AddToCartButton'
+import { buildSrcSet, CARD_IMAGE_SIZES } from '../../utils/images'
 
 /**
  * @param {Object} props
@@ -12,13 +12,13 @@ import AddToCartButton from '../AddToCartButton/AddToCartButton'
 
 const PLACEHOLDER_IMAGE = '/assets/product-placeholder.png'
 
-const cardClasses = [
-  'group flex w-full flex-col overflow-hidden',
-  'rounded-card border border-line bg-white shadow-card',
-  'transition-shadow duration-300 ease-soft hover:shadow-lift',
-].join(' ')
+// const cardClasses = [
+//   'group flex w-full flex-col overflow-hidden',
+//   'rounded-card border border-line bg-white shadow-card',
+//   'transition-shadow duration-300 ease-soft hover:shadow-lift',
+// ].join(' ')
 
-const imageClasses = 'h-full w-full object-cover transition-transform duration-500 ease-soft'
+// const imageClasses = 'h-full w-full object-cover transition-transform duration-500 ease-soft'
 
 const saleClasses = {
   badge: 'w-fit rounded-full bg-red-100 px-2.5 py-0.5 text-xs font-semibold text-red-700',
@@ -36,7 +36,7 @@ function ProductCard({ product }) {
   const imageSrc = product.image || PLACEHOLDER_IMAGE
   const inStock = product.inStock !== false
 
-  const imageState = inStock ? 'group-hover:scale-105' : 'grayscale'
+  // const imageState = inStock ? 'group-hover:scale-105' : 'grayscale'
   const tone = inStock ? 'text-ink' : 'text-ink-muted'
 
   const isOnSale = product.oldPrice > product.price
@@ -45,17 +45,24 @@ function ProductCard({ product }) {
     : 0
 
   return (
-    <article className={cardClasses}>
-      <img
-        className={`${imageClasses} ${imageState}`}
-        src={imageSrc}
-        onError={(e) => {
-          e.currentTarget.onerror = null
-          e.currentTarget.src = PLACEHOLDER_IMAGE
-        }}
-        alt={product.title}
-      />
-      <div className="flex flex-1 flex-col gap-3 p-4">
+    <article className="flex w-full flex-col overflow-hidden rounded-xl border border-stone-200 bg-white shadow-sm">
+      <div className="aspect-4/3 w-full bg-stone-100">
+        <img
+          className="h-full w-full object-cover"
+          width="400"
+          height="300"
+          src={`${imageSrc}?w=480`}
+          srcSet={buildSrcSet(imageSrc)}
+          sizes={CARD_IMAGE_SIZES}
+          onError={(e) => {
+            e.currentTarget.onerror = null
+            e.currentTarget.src = PLACEHOLDER_IMAGE
+          }}
+          alt={product.title}
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col gap-2 p-3 sm:p-4">
         <div className="flex flex-wrap items-center gap-2">
           <span className={badgeClasses}>{product.category}</span>
 
@@ -69,9 +76,9 @@ function ProductCard({ product }) {
             </span>
           )}
         </div>
-        <h2 className={`font-display text-lg font-semibold leading-snug ${tone}`}>
+        <h3 className="line-clamp-2 text-base font-semibold text-stone-900 md:text-lg">
           {product.title}
-        </h2>
+        </h3>
         <div className="mt-auto">
           {isOnSale && (
             <p className={saleClasses.oldPrice}>{product.oldPrice.toLocaleString('uk-UA')} грн</p>
