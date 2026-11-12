@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./styles/tokens.css";
 
 @theme {
   --color-clay-50: #fbf3ef;
@@ -23,7 +24,7 @@
 @layer base {
   body {
     background-color: var(--color-paper);
-    color: var(--color-ink);
+    color: var(--color-ink-900);
     -webkit-font-smoothing: antialiased;
   }
 }
